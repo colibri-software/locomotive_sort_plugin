@@ -1,0 +1,54 @@
+h1. Sort Plugin
+
+This is a plugin for LocomotiveCMS. It was created to allow LocomotiveCMS designers to sort content types in multiple ways.
+
+It provides a few liquid tags that can be used to add sort functionality.
+
+h2. Installation
+
+To use this plugin you must be using a version of LocomotiveCMS that has the plugins feature designed by "Colibri Software":https://www.colibri-software.com. You can do this by making the following changes to the Gemfile in you app:
+
+* Remove or comment out the following line:
+@gem 'locomotive_cms', '~> 2.X.X', require: 'locomotive/engine'@
+* Add the following line:
+@gem 'locomotive_cms', require: 'locomotive/engine', git: 'https://github.com/colibri-software/locomotive_engine.git', branch: 'plugins'@
+
+Then add the following lines in your Gemfile to include the plugin:
+<pre><code>group :locomotive_plugins do
+  gem 'locomotive_sort_plugin'
+end</code></pre>
+
+h2. Usage
+
+h3. Configuring Plugin
+
+This plugin requires no configuration.
+
+h3. Liquid Drops
+
+This plugin has no Liquid Drops
+
+h3. Liquid Tags
+
+This plugin provides several tags that will add sort functionality.
+
+The following is a list of tags and their options(and defaults):
+
+* sort_by_field
+* sort_boolean
+
+Both tags follow the following syntax:
+
+@{% <tag_name> to <variable_name> from <content_type/collection> by <field_name> [reverse] %}@
+
+Here is an example of sorting the content type people into the variable sorted_people by their name:
+
+@{% sort_by_field to sorted_people from contents.people by name %}@
+
+Here is an example of sorting those people already sorted by email opt out, with those who haven't opted out first:
+
+@{% sort_boolean to second_sort from sorted_people by email_opt_out reverse %}@
+
+h3. Liquid Filters
+
+This plugin has no Liquid Filters
